@@ -24,6 +24,19 @@ function Login() {
         position: "bottom-center",
       });
     }
+    
+    const collectionRef = collection(db, "Users");
+    const querySnapshot = await getDocs(collectionRef);
+
+    querySnapshot.forEach((doc) => {
+      const docRef = doc(db, "Users", doc.id);
+      updateDoc(docRef, {
+        treesPlanted: o
+      });
+    });
+
+
+
   };
 
   return (
