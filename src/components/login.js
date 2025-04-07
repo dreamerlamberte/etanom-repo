@@ -1,8 +1,9 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { auth } from "./firebase";
+import { auth, db  } from "./firebase";
 import { toast } from "react-toastify";
 import SignInwithGoogle from "./signInWIthGoogle";
+import { updateDoc, getDoc, doc } from "firebase/firestore";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -25,13 +26,13 @@ function Login() {
       });
     }
     
-    const collectionRef = collection(db, "Users");
-    const querySnapshot = await getDocs(collectionRef);
+    const collectionRef = doc(db, "Users");
+    const querySnapshot = await getDoc(collectionRef);
 
     querySnapshot.forEach((doc) => {
       const docRef = doc(db, "Users", doc.id);
       updateDoc(docRef, {
-        treesPlanted: o
+        treesPlanted: 0
       });
     });
 
