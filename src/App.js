@@ -20,17 +20,10 @@ import { auth } from "./components/config/firebase";
 function App() {
   const [user, setUser] = useState();
   useEffect(() => {
-    const loggedIn = onAuthStateChanged(auth,(user) => {
-      if (user){
-        setUser(user);
-        return;
-      }else{
-        setUser(null);
-      }
+    auth.onAuthStateChanged((user) => {
+      setUser(user);
     });
-    return () => loggedIn();
   });
-  
   return (
     <Router>
       <div className="App">
