@@ -8,22 +8,29 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import Login from "./components/login";
-import SignUp from "./components/register";
+import Login from "./components/pages/login/login";
+import SignUp from "./components/pages/signin/register";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Profile from "./components/profile";
 import { useState } from "react";
-import { auth } from "./components/firebase";
+import { auth } from "./components/config/firebase";
 
 function App() {
   const [user, setUser] = useState();
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      setUser(user);
+    const loggedIn = onAuthStateChanged(auth,(user) => {
+      if (user){
+        setUser(user);
+        return;
+      }else{
+        setUser(null);
+      }
     });
+    return () => loggedIn();
   });
+  
   return (
     <Router>
       <div className="App">

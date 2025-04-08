@@ -1,5 +1,5 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth, db } from "./firebase";
+import { auth, db } from "../../config/firebase";
 import { toast } from "react-toastify";
 import { setDoc, doc } from "firebase/firestore";
 
@@ -30,7 +30,7 @@ function SignInwithGoogle() {
         style={{ display: "flex", justifyContent: "center", cursor: "pointer" }}
         onClick={googleLogin}
       >
-        <img src={require("../google.png")} width={"60%"} />
+        <img src={require("../../../assets/img/google.png")} width={"60%"} />
       </div>
     </div>
   );

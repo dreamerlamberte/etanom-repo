@@ -1,8 +1,8 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { auth, db  } from "./firebase";
+import { auth, db  } from "../../config/firebase";
 import { toast } from "react-toastify";
-import SignInwithGoogle from "./signInWIthGoogle";
+import SignInwithGoogle from "../signin/signInWIthGoogle";
 import { updateDoc, getDoc, doc } from "firebase/firestore";
 
 function Login() {
